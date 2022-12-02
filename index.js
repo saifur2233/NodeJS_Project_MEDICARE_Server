@@ -3,9 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
-const stripe = require("stripe")(
-  "sk_test_51MAFRMJTOLTNTSGnP3p0gUXvGYKtZtuz3DJAdY8wqVyOZWY4xGwUhB9ZeOVh4qTf5oEfl0F1BPuDUbq8kKLZgeft001M9janki"
-);
+const Stripe = require("stripe");
+const stripe = Stripe(process.env.STRIPE_SECRETKEY);
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -14,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 const uri =
-  "mongodb+srv://saifur22:gPq02O7O47Ijyzgy@cluster0.g79cke1.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://process.env.DB_USERNAME:DB_PASSWORD@cluster0.g79cke1.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
